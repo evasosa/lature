@@ -1,39 +1,105 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <html>
-    <head>
-    <script>
-      document. write ("script di antara tag head")
-    </ script>
-  </head>
-  
-<header>
-  <img src="usu.png" alt="Logo usu">
-  <h1>Judul website</h1>
-  <h2>Subjudul atau Deskripsi</h2>
-  <nav>
-    <a href="#">Beranda</a>
-    <a href="#">Tentang</a>
-    <a href="#">Kontak</a>
-  </nav>
-</header>
-  
-<title>perpustakaan eva lature </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Eva Lature</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+       header {
+            background: #007bff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+           }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffdd57;
+        }
+	.content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        .content h1 {
+            color: #333;
+            margin-bottom: 10px;
+            }
+        .content p {
+            color: #555;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+
+        footer {
+            background: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-<h1>Saya Eva Lature</h1>
-<h2>Selamat datang di Perpustakaan Eva</h2>
-<p>perkenalkan,nama saya eva lature<i>homepage</i>
-pertama. Saya baru belajar tentang cara membuat<i>homepage</i</>
-<p>
-</body>
-<html>
-  <h3>Kerja Sama Perpustakaan Lain</h3>
-  <a href="https://library.sari-mutiara.ac.id/">Perpustakaan Universitas Sari Mutiara</a>
-<h4>Halaman lain</h4>
- <ul>
-    <li><a href="tabel.html">About Us</a></li>
-    <li><a href="form.html">Contact Us</a></li>
-  </ul>
-  
-</body>
+<body>
+    <header>
+        <div class="logo">Perpustakaan Eva Lature</div>
+      <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="tabel.html">Tentang Saya</a></li>
+                <li><a href="form.html">Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   <div class="content">
+        <h1>Selamat Datang di Perpustakaan Eva Lature</h1>
+        <p>Nikmati koleksi digital dan perluas wawasan dari Perpustakaan Eva Lature.</p>
+   </div>
+
+    <footer>
+        &copy; 2025 Eva Lature. All rights reserved.
+    </footer>
+
+  </body>
 </html>
+
+    
+
+
