@@ -3,104 +3,885 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header dengan Logo & Navigasi</title>
+    <title>Perpustakaan Eva Lature - Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #4CAF50;
+            --secondary: #388E3C;
+            --accent: #8BC34A;
+            --light: #E8F5E9;
+            --dark: #1B5E20;
+            --text: #333333;
         }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
         .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
-	      align-items: center;
-            padding: 10px 20px;
-	    color: white;
-            background-color: #61d671;
-        }
-        .logo {
-            height: 50px;
-            margin-right: 10px;
-        }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .nav {
-            display: flex;
-            gap: 15px;
-        }
-	 .nav a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            padding: 5px 10px;
-            transition: 0.3s;
-        }
-        .nav a:hover {
-            background-color: #52a457;
-            border-radius: 5px;
-        }
-	.content {
-            flex: 1;
-            padding: 20px;
-            text-align: center;
-        }
-        .content h1,
-	.content h2 {
-            color: #96d84c
-            margin-bottom: 10px;
-            }
-        .content p {
-            color: #555;
-	     font-size: 1.1em;
-            max-width: 800px;
+            align-items: center;
+            max-width: 1200px;
             margin: 0 auto;
         }
-	footer {
-            background: #61d671;
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .nav a:hover:after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .nav a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .search-container {
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .featured {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        .book-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .book-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .book-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .book-info {
+            padding: 1.5rem;
+        }
+        
+        .book-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .book-author {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .book-desc {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .book-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .book-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .services {
+            background-color: var(--light);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .service-desc {
+            color: #666;
+        }
+        
+        .collaboration {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .partners {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        
+        .partner {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 30%;
+            min-width: 250px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .partner:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .partner img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+        
+        .partner h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .partner p {
+            color: #666;
+        }
+        
+        .news {
+            background-color: var(--light);
+            padding: 4rem 2rem;
+        }
+        
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .news-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .news-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .news-link {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .news-link:hover {
+            color: var(--secondary);
+        }
+        
+        .newsletter {
+            padding: 4rem 2rem;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #666;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .newsletter-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
             margin-top: auto;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-	}
-	    
-       </style>
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            margin-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 800px) {
+            .title {
+                font-size: 1.4rem;
+            }
+            
+            .logo {
+                height: 45px;
+            }
+            
+            .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.5s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav.open {
+                max-height: 300px;
+                padding: 1rem 0;
+            }
+            
+            .nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem 0;
+                border-radius: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .search-container {
+                width: 90%;
+            }
+            
+            .search-btn {
+                padding: 0.7rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .book-container, .services-container, .news-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .partners {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .partner {
+                width: 90%;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 5px;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <header class="header">
-    <div style="display: flex; align-items: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Logo_of_North_Sumatra_University.svg/600px-Logo_of_North_Sumatra_University.svg.png" alt="Logo" class="logo">
-        <h1 class="title">Perpustakaan Eva Lature</h1>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Logo_of_North_Sumatra_University.svg/600px-Logo_of_North_Sumatra_University.svg.png" alt="Logo" class="logo">
+            <div class="title">Perpustakaan Eva Lature</div>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Beranda</a>
+            <a href="katalog.html">Katalog</a>
+            <a href="artikel.html">Artikel</a>
+            <a href="tabel.html">Tentang Saya</a>
+            <a href="form.html">Kontak Kami</a>
+        </nav>
+        <button class="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
-    <nav class="nav">
-	<a href="index.html">Beranda</a>
-        <a href="tabel.html">Tentang Saya</a>
-        <a href="form.html">Kontak Kami</a>
-    </nav>
 </header>
 
-  <div class="content">
-        <h1>Selamat Datang di Perpustakaan Eva Lature</h1>
-        <p>Nikmati koleksi digital dan perluas wawasan dari Perpustakaan Eva Lature.</p>
-	<h2>kolaborasi</h2>
-	<p>Perpustakaan Eva Lature bekerja sama dengan <a href="https://library.sari mutiara.ac.id/" target="_blank">Perpustakaan Universitas Sari Mutiara.</a> Klik untuk melihat 
-perpustakaannya lebih lengkap.</p>
-   </div>
+<section class="hero">
+    <h1>Selamat Datang di Perpustakaan Eva Lature</h1>
+    <p>Nikmati koleksi digital dan perluas wawasan Anda dengan berbagai sumber pengetahuan yang kami sediakan</p>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Cari buku, jurnal, atau artikel...">
+        <button class="search-btn">Cari</button>
+    </div>
+</section>
 
-<footer>
-    &copy; 2025 Eva Lature. All rights reserved.
-</footer>
+<section class="featured">
+    <h2 class="section-title">Koleksi Terbaru</h2>
+    <div class="book-container">
+        <div class="book-card">
+            <img src="/api/placeholder/300/200" alt="Buku 1" class="book-img">
+            <div class="book-info">
+                <h3 class="book-title">Pengantar Ilmu Komputer</h3>
+                <p class="book-author">Oleh: Dr. Budi Santoso</p>
+                <p class="book-desc">Buku komprehensif tentang dasar-dasar ilmu komputer untuk pemula.</p>
+                <a href="#" class="book-btn">Baca Detail</a>
+            </div>
+        </div>
+        <div class="book-card">
+            <img src="/api/placeholder/300/200" alt="Buku 2" class="book-img">
+            <div class="book-info">
+                <h3 class="book-title">Sastra Indonesia Modern</h3>
+                <p class="book-author">Oleh: Prof. Siti Rahayu</p>
+                <p class="book-desc">Mengupas perkembangan sastra Indonesia dari masa ke masa.</p>
+                <a href="#" class="book-btn">Baca Detail</a>
+            </div>
+        </div>
+        <div class="book-card">
+            <img src="/api/placeholder/300/200" alt="Buku 3" class="book-img">
+            <div class="book-info">
+                <h3 class="book-title">Ekonomi Mikro</h3>
+                <p class="book-author">Oleh: Dr. Joko Widodo</p>
+                <p class="book-desc">Pembahasan mendalam tentang prinsip-prinsip ekonomi mikro.</p>
+                <a href="#" class="book-btn">Baca Detail</a>
+            </div>
+        </div>
+        <div class="book-card">
+            <img src="/api/placeholder/300/200" alt="Buku 4" class="book-img">
+            <div class="book-info">
+                <h3 class="book-title">Biologi Molekuler</h3>
+                <p class="book-author">Oleh: Prof. Dr. Haryanto</p>
+                <p class="book-desc">Mempelajari struktur dan fungsi gen pada tingkat molekuler.</p>
+                <a href="#" class="book-btn">Baca Detail</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-</body>
-</html>
-	
-        
-           
-   
+<section class="services">
+    <h2 class="section-title">Layanan Kami</h2>
+    <div class="services-container">
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3 class="service-title">Peminjaman Buku</h3>
+            <p class="service-desc">Pinjam buku favorit Anda dengan prosedur yang mudah dan cepat</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <h3 class="service-title">Akses E-Resource</h3>
+            <p class="service-desc">Akses ribuan e-book dan jurnal online dari mana saja</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3 class="service-title">Ruang Diskusi</h3>
+            <p class="service-desc">Nikmati fasilitas ruang diskusi yang nyaman untuk belajar kelompok</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-wifi"></i>
+            </div>
+            <h3 class="service-title">Koneksi Internet</h3>
+            <p class="service-desc">Akses internet cepat dan stabil untuk kebutuhan riset Anda</p>
+        </div>
+    </div>
+</section>
 
- 
-    
+<section class="collaboration">
+    <h2 class="section-title">Kolaborasi</h2>
+    <p>Perpustakaan Eva Lature bekerja sama dengan berbagai institusi untuk memperkaya koleksi dan pelayanan</p>
+    <div class="partners">
+        <div class="partner">
+            <img src="/api/placeholder/150/150" alt="Partner 1">
+            <h3>Perpustakaan Universitas Sari Mutiara</h3>
+            <p>Kolaborasi untuk akses sumber daya akademik bersama</p>
+            <a href="https://library.sarimutiara.ac.id/" class="book-btn">Kunjungi</a>
+        </div>
+        <div class="partner">
+            <img src="/api/placeholder/150/150" alt="Partner 2">
+            <h3>Perpustakaan Nasional</h3>
+            <p>Akses ribuan buku referensi nasional dan internasional</p>
+            <a href="#" class="book-btn">Kunjungi</a>
+        </div>
+        <div class="partner">
+            <img src="/api/placeholder/150/150" alt="Partner 3">
+            <h3>Digital Library Network</h3>
+            <p>Jaringan perpustakaan digital terlengkap di Indonesia</p>
+            <a href="#" class="book-btn">Kunjungi</a>
+        </div>
+    </div>
+</section>
 
+<section class="news">
+    <h2 class="section-title">Berita Terbaru</h2>
+    <div class="news-container">
+        <div class="news-card">
+            <img src="/api/placeholder/350/200" alt="Berita 1" class="news-img">
+            <div class="news-content">
+                <p class="news-date">12 Mei 2025</p>
+                <h3 class="news-title">Workshop Penelitian Digital</h3>
+                <p class="news-excerpt">Workshop tentang metode penelitian digital akan diselenggarakan pada tanggal 20 Mei 2025.</p>
+                <a href="#" class="news-link">Baca selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="/api/placeholder/350/200" alt="Berita 2" class="news-img">
+            <div class="news-content">
+                <p class="news-date">8 Mei 2025</p>
+                <h3 class="news-title">Penambahan Koleksi Baru</h3>
+                <p class="news-excerpt">Perpustakaan baru saja menambahkan lebih dari 500 judul buku baru dari berbagai disiplin ilmu.</p>
+                <a href="#" class="news-link">Baca selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="/api/placeholder/350/200" alt="Berita 3" class="news-img">
+            <div class="news-content">
+                <p class="news-date">1 Mei 2025</p>
+                <h3 class="news-title">Bedah Buku: Novel Terbaru</h3>
+                <p class="news-excerpt">Acara bedah buku novel terbaru karya penulis terkenal akan diselenggarakan minggu depan.</p>
+                <a href="#" class="news-link">Baca selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="newsletter">
+    <h2 class="section-title">Berlangganan Newsletter</h2>
+    <p>Dapatkan informasi terbaru tentang koleksi baru, acara, dan layanan perpustakaan langsung ke email Anda</p>
+    <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Masukkan alamat email Anda">
+        <button type="submit" class="newsletter-btn">Berlangganan</button>
+    </form>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Tentang Kami</h3>
+            <p>Perpust
